@@ -1,0 +1,22 @@
+name: C++ Build
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install compiler
+        run: sudo apt-get install g++
+
+      - name: Build project
+        run: g++ src/main.cpp -o program
+
+      - name: Run program
+        run: ./program || true
